@@ -67,4 +67,10 @@ abstract interface class NostrRelayManagementMethodsServiceBase {
   });
 
   Future<List<BlockedIp>?> listblockedips();
+
+  Future<T?> customMethod<T>({
+    required String methodName,
+    required T Function(Object? result) adapter,
+    List<Object?>? params,
+  });
 }

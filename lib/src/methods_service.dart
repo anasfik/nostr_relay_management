@@ -271,4 +271,18 @@ class NostrRelayManagementMethodsService
       },
     );
   }
+
+  @override
+  Future<T?> customMethod<T>({
+    required String methodName,
+    required T Function(Object? result) adapter,
+    List<Object?>? params,
+  }) {
+    return networker.sendRequest(
+      url: url,
+      methodName: methodName,
+      params: params ?? [],
+      adapter: adapter,
+    );
+  }
 }
