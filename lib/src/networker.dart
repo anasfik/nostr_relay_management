@@ -80,7 +80,9 @@ class NostrRelayManagementNetworker {
         );
       }
     } catch (e) {
-      // ...
+      print("Error during request: $e");
+
+      return null;
     }
   }
 }
