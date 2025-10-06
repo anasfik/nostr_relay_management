@@ -8,7 +8,8 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  nostr_nip86:
+  # add this
+  nostr_relay_management_api:
 ```
 
 Then run `flutter pub get` or `dart pub get` in your terminal.

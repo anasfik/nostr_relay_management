@@ -1,17 +1,24 @@
 name: nostr_relay_management_api
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: Support for Nostr NIP-86 Relay Management API for Dart/Flutter applications.
+version: 1.0.1
+repository: https://github.com/anasfik/nostr_relay_management
+documentation: https://github.com/anasfik/nostr_relay_management#
+topics: 
+  - nostr
+  - relay
+  - management
+  - nip-86
+  - client
 
 environment:
   sdk: ^3.6.0
 
-# Add regular dependencies here.
+
 dependencies:
   dart_nostr: ^8.0.3
   crypto: ^3.0.6
   dio: ^5.9.0
-  # path: ^1.8.0
+
 
 dev_dependencies:
   lints: ^5.0.0
