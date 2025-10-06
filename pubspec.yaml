@@ -8,9 +8,9 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  http: ^1.2.2
   dart_nostr: ^8.0.3
   crypto: ^3.0.6
+  dio: ^5.9.0
   # path: ^1.8.0
 
 dev_dependencies:

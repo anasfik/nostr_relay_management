@@ -1,6 +1,6 @@
 import 'package:crypto/crypto.dart';
 import 'package:dart_nostr/dart_nostr.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'dart:convert';
 
 import 'package:nostr_relay_management_api/src/nostr_auth.dart';
@@ -12,7 +12,7 @@ class NostrRelayManagementNetworker {
     required this.hexPrivateKey,
   });
 
-  Future<T> sendRequest<T>({
+  Future<T?> sendRequest<T>({
     required String url,
     required String methodName,
     required List params,
@@ -31,22 +31,36 @@ class NostrRelayManagementNetworker {
     );
 
     final requestHeaders = {
-      'Content-Type': 'application/nostr+json+rpc',
-      'Accept': 'application/json',
       'Authorization': 'Nostr $nostrToken',
+      'Content-Type': 'application/nostr+json+rpc',
+      'charset': 'utf-8',
     };
 
     try {
-      final response = await http.post(
-        Uri.parse(url),
-        headers: requestHeaders,
-        body: jsonEncode(body),
+      final dio = Dio(
+        BaseOptions(
+          baseUrl: url,
+          connectTimeout: const Duration(seconds: 10),
+          receiveTimeout: const Duration(seconds: 15),
+          headers: requestHeaders,
+          responseType: ResponseType.json,
+          validateStatus: (status) =>
+              status != null && status >= 200 && status < 500,
+        ),
       );
 
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        print("Response body: ${response.body}");
+      final response = await dio.post(
+        '',
+        data: jsonEncode(body),
+      );
 
-        final decodedRes = jsonDecode(response.body) as Map<String, dynamic>;
+      if (response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300) {
+        final decodedRes = jsonDecode(response.data) as Map<String, dynamic>;
+
+        print("Response body: $decodedRes");
+
         final error = decodedRes["error"];
 
         if (error is String && error.isNotEmpty) {
@@ -54,17 +68,19 @@ class NostrRelayManagementNetworker {
         }
 
         final successData = decodedRes["result"];
+
+        print("result: $successData");
+
         final result = adapter(successData);
 
         return result;
       } else {
         throw Exception(
-          'Request failed with status: ${response.statusCode}, body: ${response.body}',
+          'Request failed with status: ${response.statusCode}, body: ${response.data}',
         );
       }
     } catch (e) {
       // ...
-      rethrow;
     }
   }
 }

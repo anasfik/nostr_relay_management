@@ -22,7 +22,7 @@ class NostrRelayManagementMethodsService
   );
 
   @override
-  Future<bool> allowevent({
+  Future<bool?> allowevent({
     required String eventId,
     String? reason,
   }) async {
@@ -37,7 +37,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> allowkind({
+  Future<bool?> allowkind({
     required int kind,
   }) async {
     return networker.sendRequest(
@@ -51,7 +51,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> allowpubkey({
+  Future<bool?> allowpubkey({
     required String pubkey,
     String? reason,
   }) async {
@@ -66,7 +66,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> banevent({
+  Future<bool?> banevent({
     required String eventId,
     String? reason,
   }) async {
@@ -81,7 +81,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> banpubkey({
+  Future<bool?> banpubkey({
     required String pubkey,
     String? reason,
   }) async {
@@ -96,7 +96,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> blockip({
+  Future<bool?> blockip({
     required String ip,
     String? reason,
   }) async {
@@ -111,7 +111,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> unblockip({
+  Future<bool?> unblockip({
     required String ip,
   }) async {
     return networker.sendRequest(
@@ -125,7 +125,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> changerelaydescription({
+  Future<bool?> changerelaydescription({
     required String newDescription,
   }) async {
     return networker.sendRequest(
@@ -139,7 +139,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> changerelayicon({
+  Future<bool?> changerelayicon({
     required String newIconUrl,
   }) async {
     return networker.sendRequest(
@@ -153,7 +153,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> changerelayname({
+  Future<bool?> changerelayname({
     required String newName,
   }) async {
     return networker.sendRequest(
@@ -167,7 +167,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<bool> disallowkind({
+  Future<bool?> disallowkind({
     required int kind,
   }) async {
     return networker.sendRequest(
@@ -181,7 +181,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<int>> listallowedkinds() async {
+  Future<List<int>?> listallowedkinds() async {
     return networker.sendRequest(
       url: url,
       methodName: "listallowedkinds",
@@ -193,7 +193,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<AllowedPubkeyInfo>> listallowedpubkeys() async {
+  Future<List<AllowedPubkeyInfo>?> listallowedpubkeys() async {
     return networker.sendRequest(
       url: url,
       methodName: "listallowedpubkeys",
@@ -207,7 +207,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<BannedEventInfo>> listbannedevents() async {
+  Future<List<BannedEventInfo>?> listbannedevents() async {
     return networker.sendRequest(
       url: url,
       methodName: "listbannedevents",
@@ -221,7 +221,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<BannedPubkeyInfo>> listbannedpubkeys() async {
+  Future<List<BannedPubkeyInfo>?> listbannedpubkeys() async {
     return networker.sendRequest(
       url: url,
       methodName: "listbannedpubkeys",
@@ -235,7 +235,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<BlockedIp>> listblockedips() async {
+  Future<List<BlockedIp>?> listblockedips() async {
     return networker.sendRequest(
       url: url,
       methodName: "listblockedips",
@@ -247,7 +247,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<NeededEventModeration>> listeventsneedingmoderation() async {
+  Future<List<NeededEventModeration>?> listeventsneedingmoderation() async {
     return networker.sendRequest(
       url: url,
       methodName: "listeventsneedingmoderation",
@@ -261,7 +261,7 @@ class NostrRelayManagementMethodsService
   }
 
   @override
-  Future<List<String>> supportedmethods() async {
+  Future<List<String>?> supportedmethods() async {
     return networker.sendRequest(
       url: url,
       methodName: "supportedmethods",
