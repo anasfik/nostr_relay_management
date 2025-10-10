@@ -6,5 +6,5 @@
 
 - Making the package extensible for custom methods.
 - Fixed minor bugs.
-- Minor changes to README.md
+- Minor changes to README.md.
 - Updated dependencies.

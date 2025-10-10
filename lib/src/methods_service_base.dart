@@ -57,6 +57,22 @@ abstract interface class NostrRelayManagementMethodsServiceBase {
 
   Future<List<int>?> listallowedkinds();
 
+  Future<List<int>?> listdisallowedkinds();
+
+  Future<List<BannedEventInfo>?> listallowedevents();
+
+  Future<Map<String, dynamic>?> stats();
+
+  Future<bool?> grantadmin({
+    required String pubkey,
+    List<String>? methods,
+  });
+
+  Future<bool?> revokeadmin({
+    required String pubkey,
+    List<String>? methods,
+  });
+
   Future<bool?> blockip({
     required String ip,
     String? reason,

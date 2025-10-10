@@ -193,6 +193,74 @@ class NostrRelayManagementMethodsService
   }
 
   @override
+  Future<List<int>?> listdisallowedkinds() async {
+    return networker.sendRequest(
+      url: url,
+      methodName: "listdisallowedkinds",
+      params: [],
+      adapter: (result) {
+        return (result as List).map((e) => e as int).toList();
+      },
+    );
+  }
+
+  @override
+  Future<List<BannedEventInfo>?> listallowedevents() async {
+    return networker.sendRequest(
+      url: url,
+      methodName: "listallowedevents",
+      params: [],
+      adapter: (result) {
+        return (result as List)
+            .map((e) => BannedEventInfo.fromJson(e))
+            .toList();
+      },
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>?> stats() async {
+    return networker.sendRequest(
+      url: url,
+      methodName: "stats",
+      params: [],
+      adapter: (result) {
+        return result as Map<String, dynamic>;
+      },
+    );
+  }
+
+  @override
+  Future<bool?> grantadmin({
+    required String pubkey,
+    List<String>? methods,
+  }) async {
+    return networker.sendRequest(
+      url: url,
+      methodName: "grantadmin",
+      params: [pubkey, methods],
+      adapter: (result) {
+        return result as bool;
+      },
+    );
+  }
+
+  @override
+  Future<bool?> revokeadmin({
+    required String pubkey,
+    List<String>? methods,
+  }) async {
+    return networker.sendRequest(
+      url: url,
+      methodName: "revokeadmin",
+      params: [pubkey, methods],
+      adapter: (result) {
+        return result as bool;
+      },
+    );
+  }
+
+  @override
   Future<List<AllowedPubkeyInfo>?> listallowedpubkeys() async {
     return networker.sendRequest(
       url: url,
